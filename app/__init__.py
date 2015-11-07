@@ -10,6 +10,11 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 import site.controllers
+# Import a module / component using its blueprint handler variable (mod_auth)
+from app.auth.controllers import mod_auth as auth_module
+
+# Register blueprint(s)
+app.register_blueprint(auth_module)
 
 @app.errorhandler(404)
 def page_not_found(e):
