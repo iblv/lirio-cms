@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
 {% block body %}
+{% if logged_user and google_users.is_current_user_admin() %}
+    Welcome, {{ logged_user.nickname() }}! <a href="{{google_users.create_logout_url('/')}}">logout</a>
+{% endif %}
 <h1>Admin Page</h1>
 {% macro render_field(field, placeholder=None) %}
 {% if field.errors %}
@@ -25,8 +28,7 @@
 <form method="POST" action="." accept-charset="UTF-8" role="form">
   {{ form.csrf_token }}
   {{ render_field(form.name, placeholder="Name", autofocus="")}}
-  {{ render_field(form.email, placeholder="Your Email Address",
-                              autofocus="") }}
+  {{ render_field(form.email, placeholder="Your Email Address") }}
   {{ render_field(form.password, placeholder="Password") }}
   <button type="submit" name="submit">Save</button>
 </form>

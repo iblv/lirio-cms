@@ -2,8 +2,7 @@ from flask import Blueprint, request, render_template, flash, g, session, redire
 # Import password / encryption helper tools
 from werkzeug import check_password_hash, generate_password_hash
 
-#from app import db
-
+from google.appengine.api import users as google_users
 from app.auth.forms import LoginForm, AdminForm
 from app.auth.models import User
 
@@ -28,6 +27,7 @@ def login():
 
 @mod_auth.route('/admin/', methods=['GET','POST'])
 def admin():
+    logged_user = google_users.get_current_user()
     form = AdminForm(request.form)
     if form.validate_on_submit():
         user = User()
@@ -39,4 +39,4 @@ def admin():
 
 
     users = User.query().order(-User.created_at)
-    return render_template("auth/admin.html", form=form, users=users)
+    return render_template("auth/admin.html", form=form, users=users, logged_user=logged_user, google_users=google_users)
