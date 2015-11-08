@@ -34,8 +34,8 @@ def admin():
         user.email = form.email.data
         user.name = form.name.data
         user.password = generate_password_hash(form.password.data)
-        if user.put():
-            return redirect(url_for('auth.admin'))
+        user.put()
+        return redirect(url_for('auth.admin'))
 
 
     users = User.query().order(-User.created_at)
