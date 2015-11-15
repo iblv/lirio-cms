@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Week Day</th>
+    <th>Schedule</th>
+    <th>Pastor</th>
+  </tr>
+  {% for worship in worships %}
+    <tr>
+      <td><a href="/worships/{{worship.key.id()}}/edit">{{ worship.key.id() }}</a></td>
+      <td>{{ worship.name }}</td>
+      <td>{{ worship.get_week_day() }}</td>
+      <td>{{ worship.schedule }}</td>
+      <td>{{ worship.pastor }}</td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}

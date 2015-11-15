@@ -1,8 +1,5 @@
-{% extends "layout.html" %}
-{% block body %}
 <div>
   <div>
-    <legend>Sign in</legend>
     {% macro render_field(field, placeholder=None) %}
       {% if field.errors %}
       <div>
@@ -24,19 +21,13 @@
       {% endfor %}
       </div>
     {% endif %}
-    <form method="POST" action="." accept-charset="UTF-8" role="form">
+    <form method="{{method}}" action="{{action}}" accept-charset="UTF-8" role="form">
       {{ form.csrf_token }}
-      {{ render_field(form.email, placeholder="Your Email Address",
-                                  autofocus="") }}
-      {{ render_field(form.password, placeholder="Password") }}
-      <div>
-      <label>
-        <input type="checkbox" name="remember" value="1"> Remember Me
-      </label>
-      <a role="button" href="">Forgot your password?</a><span class="clearfix"></span>
-      </div>
-      <button type="submit" name="submit">Sign in</button>
+      {{ render_field(form.name, 'Worship name') }}
+      {{ render_field(form.schedule, 'Worship schedule') }}
+      {{ render_field(form.week_day, 'Worship Week of Day') }}
+      {{ render_field(form.pastor, 'Worship Pastor') }}
+      <button type="submit" name="submit">Save</button>
     </form>
   </div>
 </div>
-{% endblock %}

@@ -1,4 +1,4 @@
-from app.core.models import Base, ndb
+from app.core.models import *
 
 class User(Base):
     name = ndb.StringProperty(indexed=True)

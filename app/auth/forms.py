@@ -1,6 +1,4 @@
-from flask.ext.wtf import Form
-from wtforms import TextField, PasswordField # BooleanField
-from wtforms.validators import Required, Email, EqualTo
+from app.core.forms import *
 
 class LoginForm(Form):
     email    = TextField('Email Address', [Email(), Required(message='Forgot your email address?')])
