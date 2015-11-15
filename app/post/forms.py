@@ -4,7 +4,7 @@ class PostForm(Form):
     url = TextField('URL', [Required(message='URL required')])
     title = TextField('Title',[Required(message='Title required')])
     content = TextAreaField('Content')
-    description = TextAreaField('Description',[Length(max=10)])
+    description = TextAreaField('Description',[Length(max=100)])
     category = TextField('Category')
     tags = TextField('Tags')
     post_type = SelectField('Post Type', choices=[('page','Page'),('post','Post')])

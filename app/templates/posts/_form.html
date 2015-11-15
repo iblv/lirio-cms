@@ -23,14 +23,14 @@
     {% endif %}
     <form method="{{method}}" action="{{action}}" accept-charset="UTF-8" role="form">
       {{ form.csrf_token }}
-      {{ render_field(form.url) }}
-      {{ render_field(form.title) }}
-      {{ render_field(form.description) }}
-      {{ render_field(form.content) }}
-      {{ render_field(form.category) }}
-      {{ render_field(form.tags) }}
-      {{ render_field(form.post_type) }}
-      {{ render_field(form.post_status) }}
+      {{ render_field(form.url, 'URL') }}
+      {{ render_field(form.title, 'Title') }}
+      {{ render_field(form.description, 'Description') }}
+      {{ render_field(form.content, 'Content') }}
+      {{ render_field(form.category, 'Category') }}
+      {{ render_field(form.tags, 'Tags separated by comman') }}
+      {{form.post_type.label}}{{ render_field(form.post_type, 'Post Type') }}
+      {{form.post_status.label}}:{{ render_field(form.post_status, 'Post Status') }}
       <button type="submit" name="submit">Save</button>
     </form>
   </div>
