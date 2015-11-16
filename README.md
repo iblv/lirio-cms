@@ -1,26 +1,28 @@
-## Python Flask Skeleton for Google App Engine
+## Lírio CMS a Flask app running on Google App Engine
 
-A skeleton for building Python applications on Google App Engine with the
-[Flask micro framework](http://flask.pocoo.org).
+## Python Dependencies
+- Flask
+- Flask-WTF
+- unidecode
 
-See our other [Google Cloud Platform github
-repos](https://github.com/GoogleCloudPlatform) for sample applications and
-scaffolding for other python frameworks and use cases.
+## HTML Editor - We choice one of this options
+- [CKEditor](http://ckeditor.com/)
+- [Raptor Editor](https://www.raptor-editor.com)
 
 ## Run Locally
-1. Install the [App Engine Python SDK](https://developers.google.com/appengine/downloads).
+1. Install the [Google Cloud SDK](https://cloud.google.com/sdk/#Quick_Start).
 See the README file for directions. You'll need python 2.7 and [pip 1.4 or later](http://www.pip-installer.org/en/latest/installing.html) installed too.
 
 2. Clone this repo with
 
    ```
-   git clone https://github.com/GoogleCloudPlatform/appengine-python-flask-skeleton.git
+   git clone https://github.com/iblv/lirio-cms.git
    ```
 3. Install dependencies in the project's lib directory.
    Note: App Engine can only import libraries from inside your project directory.
 
    ```
-   cd appengine-python-flask-skeleton
+   cd lirio-cms
    pip install -r requirements.txt -t lib
    ```
 4. Run this project locally from the command line:
@@ -76,4 +78,4 @@ See [CONTRIB.md](CONTRIB.md)
 See [LICENSE](LICENSE)
 
 ## Author
-Logan Henriquez and Johan Euphrosine
+George Moura
