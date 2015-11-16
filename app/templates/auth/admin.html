@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "admin_layout.html" %}
 {% block body %}
 {% if logged_user and google_users.is_current_user_admin() %}
     Welcome, {{ logged_user.nickname() }}! <a href="{{google_users.create_logout_url('/')}}">logout</a>

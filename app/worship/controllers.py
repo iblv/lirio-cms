@@ -4,6 +4,11 @@ from app.worship.models import Worship
 
 mod_worship = Blueprint('worships', __name__, url_prefix='/worships')
 
+@mod_worship.before_request
+def before_request():
+    if 'user_id' not in session:
+        return redirect('/auth/login/')
+
 @mod_worship.route('/')
 def index():
     worships = Worship.query()

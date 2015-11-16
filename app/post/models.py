@@ -1,5 +1,7 @@
 from app.core.models import *
 from app.auth.models import User
+import re
+from unidecode import unidecode
 
 class Category(Base):
     name = ndb.StringProperty()
@@ -38,6 +40,14 @@ class Post(Base):
             status = ''
 
         return status
+
+    def slugify(self, text, delim=u'-'):
+        """Generates an ASCII-only slug."""
+        _punct_re = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
+        result = []
+        for word in _punct_re.split(text.lower()):
+            result.extend(unidecode(word).split())
+        return unicode(delim.join(result))
 
 
 class PostTag(Base):

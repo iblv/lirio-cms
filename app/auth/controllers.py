@@ -12,14 +12,18 @@ def login():
     if form.validate_on_submit():
         user = User.query(User.email == form.email.data).get()
         if user and check_password_hash(user.password, form.password.data):
-            session['user_id'] = user.id
+            session['user_id'] = user.key.id()
             flash('Welcome %s' % user.name)
-            return redirect(url_for('auth.home'))
+            return redirect('/posts/')
 
         flash('Invalid email or password', 'error')
 
     return render_template("auth/signin.html", form=form)
 
+@mod_auth.route('/logout/')
+def logout():
+    session.pop('user_id', None)
+    return redirect('/auth/login/')
 
 @mod_auth.route('/admin/', methods=['GET','POST'])
 def admin():

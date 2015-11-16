@@ -1,7 +1,7 @@
 from app.core.forms import *
 
 class PostForm(Form):
-    url = TextField('URL', [Required(message='URL required')])
+    url = TextField('URL')
     title = TextField('Title',[Required(message='Title required')])
     content = TextAreaField('Content')
     description = TextAreaField('Description',[Length(max=100)])

@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Flaskr</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='stylesheets/style.css') }}">
+  </head>
+  <body>
+    <div class="menu">
+      <h1>Admin</h1>
+      <ul>
+        <li>
+          Posts
+          <ul>
+            <li><a href="{{url_for('posts.index')}}">All Posts</a></li>
+            <li><a href="{{url_for('posts.new')}}">New Post</a></li>
+          </ul>
+        </li>
+        <li>
+          Worships
+          <ul>
+            <li><a href="{{url_for('worships.index')}}">All Worships</a></li>
+            <li><a href="{{url_for('worships.new')}}">New Worship</a></li>
+          </ul>
+        </li>
+        <li><a href="/auth/logout/">Sair</a></li>
+      </ul>
+    </div>
+    <div class=page>
+      <div class=metanav>
+      {% for message in get_flashed_messages() %}
+        <div class=flash>{{ message }}</div>
+      {% endfor %}
+      {% block body %}{% endblock %}
+    </div>
+  </body>
+</html>

@@ -7,8 +7,6 @@ app = Flask(__name__)
 # Note: We don't need to call run() since our application is embedded within
 # the App Engine WSGI application server.
 
-app.config.from_object('config')
-
 import site.controllers
 # Import a module / component using its blueprint handler variable (mod_auth)
 from app.auth.controllers import mod_auth as auth_module
