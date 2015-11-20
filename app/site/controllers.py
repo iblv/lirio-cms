@@ -1,4 +1,5 @@
 from app.core.controllers import *
+from app.post.models import Post
 from app import app
 
 @app.route('/')
@@ -8,13 +9,14 @@ def hello():
 
 @app.route('/<string:url>')
 def find_by_url(url):
-    post = Post.query(Post.url==url)
-    return render_template("site/post.html")
+    post = Post.query(Post.url==url, Post.post_status!='draft').get()
 
-@app.route('/<string:tag>')
+    return render_template("site/post.html", post=post)
+
+@app.route('/tag/<string:tag>')
 def find_by_tag_name(tag):
-    post = Post.query(Tag.name==tag)
-    return render_template("site/post_list.html")
+    posts = Post.query(Tag.name==tag, Post.post_status!='draft')
+    return render_template("site/post_list.html", posts=posts)
 
 @app.route('/contatos')
 def contatos():

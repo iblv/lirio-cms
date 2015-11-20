@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block body %}
+{{post.title}}
+<hr>
+{{post.content}}
+<hr/>
+{% for tag in post.tags %}
+  {{ tag.name }}
+{% endfor %}
+{% endblock %}

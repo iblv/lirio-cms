@@ -1,0 +1,6 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% for post in posts %}
+    {{ post.title }}<br/>
+  {% endfor %}
+{% endblock %}
