@@ -3,7 +3,7 @@ from app.post.models import Post
 from app import app
 
 @app.route('/')
-def hello():
+def home():
     """Return a friendly HTTP greeting."""
     return render_template("site/index.html")
 
@@ -18,7 +18,10 @@ def find_by_tag_name(tag):
     posts = Post.query(Tag.name==tag, Post.post_status!='draft')
     return render_template("site/post_list.html", posts=posts)
 
-@app.route('/contatos')
+@app.route('/contacts')
+def contacts():
+    return render_template("site/contacts.html")
+
+@app.route('/about')
 def contatos():
-    """Return a friendly HTTP greeting."""
-    return render_template("site/contatos.html")
+    return render_template("site/about.html")

@@ -1,42 +1,37 @@
 {% extends "layout.html" %}
+{% block custom_css %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/signin.css') }}">
+{% endblock %}
 {% block body %}
-<div>
-  <div>
-    <legend>Sign in</legend>
-    {% macro render_field(field, placeholder=None) %}
-      {% if field.errors %}
-      <div>
-      {% elif field.flags.error %}
-      <div>
-      {% else %}
-      <div>
-      {% endif %}
-      {% set css_class = 'form-control ' + kwargs.pop('class', '') %}
-      {{ field(class=css_class, placeholder=placeholder, **kwargs) }}
-      </div>
-    {% endmacro %}
-    {% if form.errors %}
-      <div>
-      {% for field, error in form.errors.items() %}
-        {% for e in error %}
-          {{ e }}<br>
-        {% endfor %}
-      {% endfor %}
-      </div>
+<div class="container">
+  {% macro render_field(field, placeholder=None) %}
+    {% if field.errors %}
+    <div>
+    {% elif field.flags.error %}
+    <div>
+    {% else %}
+    <div>
     {% endif %}
-    <form method="POST" action="." accept-charset="UTF-8" role="form">
-      {{ form.csrf_token }}
-      {{ render_field(form.email, placeholder="Your Email Address",
-                                  autofocus="") }}
-      {{ render_field(form.password, placeholder="Password") }}
-      <div>
-      <label>
-        <input type="checkbox" name="remember" value="1"> Remember Me
-      </label>
-      <a role="button" href="">Forgot your password?</a><span class="clearfix"></span>
-      </div>
-      <button type="submit" name="submit">Sign in</button>
-    </form>
-  </div>
-</div>
+    {% set css_class = 'form-control ' + kwargs.pop('class', '') %}
+    {{ field(class=css_class, placeholder=placeholder, **kwargs) }}
+    </div>
+  {% endmacro %}
+  {% if form.errors %}
+    <div>
+    {% for field, error in form.errors.items() %}
+      {% for e in error %}
+        {{ e }}<br>
+      {% endfor %}
+    {% endfor %}
+    </div>
+  {% endif %}
+  <form class="form-signin" method="POST" action="." accept-charset="UTF-8" role="form">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    {{ form.csrf_token }}
+    {{ render_field(form.email, placeholder="Your Email Address", autofocus="") }}
+    {{ render_field(form.password, placeholder="Password") }}
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  </form>
+
+</div> <!-- /container -->
 {% endblock %}

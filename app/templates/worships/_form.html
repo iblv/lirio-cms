@@ -6,28 +6,38 @@
       {% elif field.flags.error %}
       <div>
       {% else %}
-      <div>
       {% endif %}
       {% set css_class = 'form-control ' + kwargs.pop('class', '') %}
       {{ field(class=css_class, placeholder=placeholder, **kwargs) }}
-      </div>
     {% endmacro %}
     {% if form.errors %}
-      <div>
+      <div class="alert alert-danger">
       {% for field, error in form.errors.items() %}
+        <ul>
         {% for e in error %}
-          {{ e }}<br>
+          <li>{{ e }}</li>
         {% endfor %}
+        </ul>
       {% endfor %}
       </div>
     {% endif %}
-    <form method="{{method}}" action="{{action}}" accept-charset="UTF-8" role="form">
+    <form method="{{method}}" class="form" action="{{action}}" accept-charset="UTF-8" role="form">
       {{ form.csrf_token }}
-      {{ render_field(form.name, 'Worship name') }}
-      {{ render_field(form.schedule, 'Worship schedule') }}
-      {{ render_field(form.week_day, 'Worship Week of Day') }}
-      {{ render_field(form.pastor, 'Worship Pastor') }}
-      <button type="submit" name="submit">Save</button>
+      <div class="form-group">
+      {{form.name.label}}{{ render_field(form.name, 'Worship name') }}
+      </div>
+      <div class="form-group">
+      {{form.schedule.label}}{{ render_field(form.schedule, 'Worship schedule') }}
+      </div>
+      <div class="form-group">
+      {{form.week_day.label}}{{ render_field(form.week_day, 'Worship Week of Day') }}
+      </div>
+      <div class="form-group">
+      {{form.pastor.label}}{{ render_field(form.pastor, 'Worship Pastor') }}
+      </div>
+      <div class="form-group">
+        <button type="submit" name="submit" class="btn btn-default">Save</button>
+      </div>
     </form>
   </div>
 </div>

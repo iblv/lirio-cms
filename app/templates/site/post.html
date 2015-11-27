@@ -1,10 +1,22 @@
 {% extends "layout.html" %}
+{% block tag_description %}
+  <meta name="description" content="{{post.description}}">
+{% endblock %}
+{% block tag_keywords %}
+  <meta name="keywords" content="{% for tag in post.tags %}{{ tag.name }},{% endfor %}"/>
+{% endblock %}
 {% block body %}
-{{post.title}}
-<hr>
-{{post.content}}
+<div class="row posts">
+  <div class="blog-post">
+    <h2 class="blog-post-title">{{post.title}}</h2>
+    <p class="blog-post-meta">{{post.created_at}} <a href="#">{{post.author.name}}</a></p>
+    <div class="blog-content">
+      {{post.content}}
+    </div>
+  </div>
+</div>
 <hr/>
 {% for tag in post.tags %}
-  {{ tag.name }}
+  {{ tag.name+' ' }}
 {% endfor %}
 {% endblock %}
