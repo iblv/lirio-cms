@@ -2,36 +2,60 @@
   <div>
     {% macro render_field(field, placeholder=None) %}
       {% if field.errors %}
-      <div>
+      <div></div>
       {% elif field.flags.error %}
-      <div>
+      <div></div>
       {% else %}
-      <div>
       {% endif %}
       {% set css_class = 'form-control ' + kwargs.pop('class', '') %}
       {{ field(class=css_class, placeholder=placeholder, **kwargs) }}
-      </div>
     {% endmacro %}
     {% if form.errors %}
-      <div>
+      <div class="alert alert-danger">
       {% for field, error in form.errors.items() %}
+        <ul>
         {% for e in error %}
-          {{ e }}<br>
+          <li>{{ e }}</li>
         {% endfor %}
+        </ul>
       {% endfor %}
       </div>
     {% endif %}
-    <form method="{{method}}" action="{{action}}" accept-charset="UTF-8" role="form">
+    <form method="{{method}}" class="form" action="{{action}}" accept-charset="UTF-8" role="form">
       {{ form.csrf_token }}
-      {{ render_field(form.url, 'URL') }}
-      {{ render_field(form.title, 'Title') }}
-      {{ render_field(form.description, 'Description') }}
-      {{ render_field(form.content, 'Content') }}
-      {{ render_field(form.category, 'Category') }}
-      {{ render_field(form.tags, 'Tags separated by comman') }}
-      {{form.post_type.label}}{{ render_field(form.post_type, 'Post Type') }}
-      {{form.post_status.label}}:{{ render_field(form.post_status, 'Post Status') }}
-      <button type="submit" name="submit">Save</button>
+      <div class="form-group">
+      {{form.url.label}}{{ render_field(form.url, 'URL') }}
+      </div>
+      <div class="form-group">
+      {{form.title.label}}{{ render_field(form.title, 'Title') }}
+      </div>
+      <div class="form-group">
+      {{form.description.label}}{{ render_field(form.description, 'Description') }}
+      </div>
+      <div class="form-group">
+      {{form.content.label}}{{ render_field(form.content, 'Content', rows='10') }}
+      </div>
+      <div class="form-group">
+      {{form.category.label}}{{ render_field(form.category, 'Category') }}
+      </div>
+      <div class="form-group">
+      {{form.tags.label}}{{ render_field(form.tags, 'Tags separated by comman') }}
+      </div>
+      <div class="form-group row">
+        <div class="col-md-6">
+          {{form.post_type.label}}{{ render_field(form.post_type, 'Post Type') }}
+        </div>
+        <div class="col-md-6">
+          {{form.post_status.label}}:{{ render_field(form.post_status, 'Post Status') }}
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-default">Save</button>
+      </div>
     </form>
   </div>
 </div>
+<script src="//cdn.ckeditor.com/4.5.5/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'content' );
+ </script>

@@ -7,6 +7,9 @@ mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
 
 @mod_auth.route('/login/', methods=['GET', 'POST'])
 def login():
+    if session['user_id']:
+        return redirect('/posts/')
+
     form = LoginForm(request.form)
     # Verify the sign in form
     if form.validate_on_submit():
