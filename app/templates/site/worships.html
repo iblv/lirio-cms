@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+<table class="table">
+  <tr>
+    <th>Nome</th>
+    <th>Dia da semna</th>
+    <th>Horário</th>
+    <th>Pastor Responsável</th>
+  </tr>
+{% for worship in worships %}
+  <tr>
+    <td>{{worship.name}}</td>
+    <td>{{worship.get_week_day()}}</td>
+    <td>{{worship.schedule}}</td>
+    <td>{{worship.pastor}}</td>
+  </tr>
+{% endfor %}
+</table>
+{% endblock %}

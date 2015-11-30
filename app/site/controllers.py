@@ -1,5 +1,6 @@
 from app.core.controllers import *
-from app.post.models import Post
+from app.post.models import Tag, Post
+from app.worship.models import Worship
 from app import app
 
 @app.route('/')
@@ -15,7 +16,7 @@ def find_by_url(url):
 
 @app.route('/tag/<string:tag>')
 def find_by_tag_name(tag):
-    posts = Post.query(Tag.name==tag, Post.post_status!='draft')
+    posts = Post.query(Post.tags==Tag(name=tag), Post.post_status!='draft').fetch()
     return render_template("site/post_list.html", posts=posts)
 
 @app.route('/contacts')
@@ -25,3 +26,8 @@ def contacts():
 @app.route('/about')
 def contatos():
     return render_template("site/about.html")
+
+@app.route('/worships')
+def worships():
+  worships = Worship.all()
+  return render_template("site/worships.html", worships=worships)

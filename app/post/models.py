@@ -34,7 +34,7 @@ class Post(Base):
     def get_post_status(self):
         if(self.post_status=='draft'):
             status = 'Draft'
-        elif(self.post_status=='publisehd'):
+        elif(self.post_status=='published'):
             status = 'Published'
         else:
             status = ''

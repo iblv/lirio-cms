@@ -7,7 +7,7 @@ mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
 
 @mod_auth.route('/login/', methods=['GET', 'POST'])
 def login():
-    if session['user_id']:
+    if 'user_id' in session:
         return redirect('/posts/')
 
     form = LoginForm(request.form)
