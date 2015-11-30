@@ -11,7 +11,5 @@ install:
 before_script:
 - wget "https://storage.googleapis.com/appengine-sdks/featured/google_appengine_$APPENGINE_VERSION.zip" -nv
 - unzip -q "google_appengine_$APPENGINE_VERSION.zip"
-- ls
-- ls ~/
 # command to run tests
 script: python test_runner.py ./google_appengine ./test
