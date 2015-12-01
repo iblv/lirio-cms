@@ -1,16 +1,17 @@
-## Lírio CMS a Flask app running on Google App Engine
+## Lírio CMS a simple CMS writen in Flask for running on Google App Engine
+
+[![Build Status](https://travis-ci.org/iblv/lirio-cms.svg?branch=master)](https://travis-ci.org/iblv/lirio-cms)
 
 ## Python Dependencies
 - Flask
 - Flask-WTF
 - unidecode
 
-## HTML Editor - We choice one of this options
+## HTML Editor
 - [CKEditor](http://ckeditor.com/)
-- [Raptor Editor](https://www.raptor-editor.com)
 
 ## Run Locally
-1. Install the [Google Cloud SDK](https://cloud.google.com/sdk/#Quick_Start).
+1. Install the [Google Cloud SDK](https://cloud.google.com/sdk/#Quick_Start) or [Google App Engine SDK](https://cloud.google.com/appengine/downloads#Google_App_Engine_SDK_for_Python)
 See the README file for directions. You'll need python 2.7 and [pip 1.4 or later](http://www.pip-installer.org/en/latest/installing.html) installed too.
 
 2. Clone this repo with
@@ -49,9 +50,6 @@ To deploy the application:
    ```
 1. Congratulations!  Your application is now live at your-app-id.appspot.com
 
-## Next Steps
-This skeleton includes `TODO` markers to help you find basic areas you will want
-to customize.
 
 ### Relational Databases and Datastore
 To add persistence to your models, use
