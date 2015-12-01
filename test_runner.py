@@ -54,7 +54,10 @@ def main(sdk_path, test_path):
 
     testbed = testbed.Testbed()
     testbed.activate()
-    testbed.init_all_stubs()
+    testbed.init_app_identity_stub()
+    testbed.init_datastore_v3_stub()
+    testbed.init_user_stub()
+    testbed.init_memcache_stub()
 
     # Discover and run tests.
     suite = unittest.loader.TestLoader().discover(test_path)
