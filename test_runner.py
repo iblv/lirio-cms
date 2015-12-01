@@ -54,7 +54,10 @@ def main(sdk_path, test_path):
 
     testbed = testbed.Testbed()
     testbed.activate()
-    testbed.init_all_stubs()
+    testbed.init_app_identity_stub()
+    testbed.init_datastore_v3_stub()
+    testbed.init_user_stub()
+    testbed.init_memcache_stub()
 
     # Discover and run tests.
     suite = unittest.loader.TestLoader().discover(test_path)
@@ -71,12 +74,13 @@ def main(sdk_path, test_path):
 if __name__ == '__main__':
     parser = optparse.OptionParser(USAGE)
     options, args = parser.parse_args()
-    # if len(args) != 2:
-    #     print 'Error: Exactly 2 arguments required.'
-    #     parser.print_help()
-    #     sys.exit(1)
-    SDK_PATH = os.environ['HOME']+'/google-cloud-sdk' if 0 not in args else args[0]
-    TEST_PATH = './test/' if 1 not in args else args[1]
+    if len(args) != 2:
+        SDK_PATH = os.environ['HOME']+'/google-cloud-sdk'
+        TEST_PATH = './test'
+    else:
+        SDK_PATH =  args[0]
+        TEST_PATH = args[1]
+
     main(SDK_PATH, TEST_PATH)
 
 # [END runner]
